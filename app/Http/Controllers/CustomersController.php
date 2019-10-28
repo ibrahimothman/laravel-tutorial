@@ -44,8 +44,6 @@ class CustomersController extends Controller
     public function update(Customer $customer)
     {
         $customer->update($this->validateRequest());
-
-
         return redirect('customers/' . $customer->id);
     }
 

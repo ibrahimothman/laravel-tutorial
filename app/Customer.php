@@ -12,6 +12,16 @@ class Customer extends Model
     // Guarded Example
     protected $guarded = [];
 
+    // set default status
+    protected $attributes = [
+        'active' => 1
+    ];
+
+    //use accessors to manipulate status
+    public function getActiveAttribute($value)
+    {
+        return $this->activeOptions()[$value];
+    }
 
     public function scopeActive($query)
     {
@@ -26,6 +36,15 @@ class Customer extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function activeOptions()
+    {
+        return [
+            1 => 'Active',
+            0 => 'Inactive',
+            2 => 'In-progress',
+        ];
     }
 
 
